@@ -1,5 +1,7 @@
 package com.edu.ucb.Diagnostico.entity;
 
+import java.util.Date;
+
 import jakarta.persistence.*;
 
 @Entity
@@ -9,11 +11,12 @@ public class FactEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int factId;
 
-    private String fact;
+    private Date start_date;
+    private Boolean status;
+    private String fact;    
+    private Long petId;
 
-    private Long animalId;
-
-    // Constructor, getters, setters, y otros métodos si es necesario
+    // Constructor, getters, setters
 
     public int getFactId() {
         return factId;
@@ -23,6 +26,7 @@ public class FactEntity {
         this.factId = factId;
     }
 
+
     public String getFact() {
         return fact;
     }
@@ -31,12 +35,28 @@ public class FactEntity {
         this.fact = fact;
     }
 
-    public Long getAnimalId() {
-        return animalId;
+    public Date getStart_date(){
+        return start_date;
     }
 
-    public void setAnimalId(Long animalId) {
-        this.animalId = animalId;
+    public void setStart_date(Date start_date){
+        this.start_date= start_date;
+    }
+
+    public Long getpetId() {
+        return petId;
+    }
+
+    public void setpetId(Long petId) {
+        this.petId = petId;
+    }
+
+    public Boolean getStatus(){
+        return status;
+    }
+
+    public void setStatus(Boolean status){
+        this.status= status;
     }
 
     // to string
@@ -45,7 +65,7 @@ public class FactEntity {
         return "FactEntity{" +
                 "factId=" + factId +
                 ", fact='" + fact + '\'' +
-                ", animalId=" + animalId +
+                ", petId=" + petId +
                 '}';
     }
 

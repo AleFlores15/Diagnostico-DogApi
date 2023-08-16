@@ -6,6 +6,8 @@ public class FactDto {
     private List<String> facts;
     private boolean success;
 
+    private Long AnimalId;
+
     // Constructores, getters y setters
 
     public List<String> getFacts() {
@@ -22,6 +24,23 @@ public class FactDto {
 
     public void setSuccess(boolean success) {
         this.success = success;
+    }
+
+    //para animal id
+    public Long getAnimalId() {
+        return AnimalId;
+    }
+
+    public void setPetId(Long AnimalId) {
+        this.AnimalId = AnimalId;
+    }
+    // toSting
+    @Override
+    public String toString() {
+        return "FactDto{" +
+                "facts=" + facts +
+                ", success=" + success +
+                '}';
     }
 
 
