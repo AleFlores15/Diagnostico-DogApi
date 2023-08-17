@@ -59,10 +59,10 @@ public class FactApi {
 
 
     @PutMapping("/api/v1/fact/{id}")
-    public ResponseDto<String> updateFact(@PathVariable Long id, @RequestBody FactDto factDto) {
+    public ResponseDto<String> updateFact(@PathVariable Long id) {
         ResponseDto<String> response = new ResponseDto<>();
         try{
-            this.factBl.updateFact(id, factDto);
+            this.factBl.updateFact(id);
             response.setCode("0000");
             response.setResponse("Fact updated");
             return response;

@@ -5,7 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -47,6 +49,22 @@ public class PetApi {
             List<PetDto> petDto = this.petBl.getPet();
             response.setCode("0000");
             response.setResponse(petDto);
+            return response;
+        }catch (Exception ex){
+            System.out.println(ex.getMessage());
+            response.setCode("9999");
+            response.setErrorMessage("Internal error");
+            return response;
+        }
+    }
+
+    @PutMapping("/api/v1/pet/{petId}")
+    public ResponseDto<String> updatePet(@PathVariable Long petId) {
+        ResponseDto<String> response = new ResponseDto<>();
+        try{
+            this.petBl.updatePet(petId);
+            response.setCode("0000");
+            response.setResponse("Pet updated");
             return response;
         }catch (Exception ex){
             System.out.println(ex.getMessage());

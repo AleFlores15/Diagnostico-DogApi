@@ -72,10 +72,10 @@ public class FactBl {
    
 
 
-    public void updateFact(Long id, FactDto factDto) {
+    public void updateFact(Long id) {
         log.warn("Actualizando fact con id: " + id);
         FactEntity factEntity = factRepository.findById(id).get();
-        factEntity.setFact(factDto.getFacts().get(0));
+        factEntity.setStatus(false);
         factRepository.save(factEntity);
     }
 
