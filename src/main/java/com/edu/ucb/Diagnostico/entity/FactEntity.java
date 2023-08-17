@@ -9,11 +9,19 @@ import jakarta.persistence.*;
 public class FactEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "fact_id")
     private int factId;
 
+    @Column(name = "start_date")
     private Date start_date;
+
+    @Column(name = "status")
     private Boolean status;
-    private String fact;    
+
+    @Column(name = "fact")
+    private String fact;
+    
+    @Column(name = "pet_id")
     private Long petId;
 
     // Constructor, getters, setters
@@ -52,7 +60,7 @@ public class FactEntity {
     }
 
     public Boolean getStatus(){
-        return status;
+        return status;   
     }
 
     public void setStatus(Boolean status){

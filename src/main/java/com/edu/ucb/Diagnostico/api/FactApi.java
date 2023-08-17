@@ -9,17 +9,16 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.data.domain.Pageable;
-
-
 @CrossOrigin(origins="*")
 
 @RestController
 public class FactApi {
     @Autowired
     private FactBl factBl;
-
     @Autowired
     FactRepository factRepository;
+
+
     @PostMapping("/api/v1/pet/{petId}/fact")
     public ResponseDto<String> saveFacts(@PathVariable Long petId) {
         ResponseDto<String> response = new ResponseDto<>();
@@ -75,6 +74,7 @@ public class FactApi {
         }
     }
 
+    
     @DeleteMapping("/api/v1/fact/{id}")
     public ResponseDto<String> deleteFact(@PathVariable Long id) {
         ResponseDto<String> response = new ResponseDto<>();
