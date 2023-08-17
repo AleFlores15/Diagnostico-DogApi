@@ -2,9 +2,9 @@ package com.edu.ucb.Diagnostico.bl;
 
 import com.edu.ucb.Diagnostico.dao.FactRepository;
 import com.edu.ucb.Diagnostico.dto.FactDto;
-import com.edu.ucb.Diagnostico.dto.ResponseDto;
 import com.edu.ucb.Diagnostico.entity.FactEntity;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
@@ -23,14 +23,21 @@ public class FactBl {
     // Inyectar el repositorio
     @Autowired
     private FactRepository factRepository;
+    // api url 
+    @Value("${api.url}")
+    private String apiUrl;
+
+
+    
 
 
 
     public void saveFact(Long petId) {
         Date fechaActual = new Date();
-        String apiUrl = "https://dog-api.kinduff.com/api/facts";
+        
+        //String apiUrl = "https://dog-api.kinduff.com/api/facts";
         RestTemplate restTemplate = new RestTemplate();
-        FactDto response = restTemplate.getForObject(apiUrl, FactDto.class);
+        FactDto response = restTemplate.getForObject(this.apiUrl, FactDto.class);
         final Logger log = LoggerFactory.getLogger(FactBl.class);
         log.info("oasiosaoinfi;ans");
         System.out.println(response.getFacts());
@@ -61,13 +68,13 @@ public class FactBl {
    
 
 
-    public void updateFact(Long id, Long userid, FactDto factDto) {
+    public void updateFact(Long id, FactDto factDto) {
         FactEntity factEntity = factRepository.findById(id).get();
         factEntity.setFact(factDto.getFacts().get(0));
         factRepository.save(factEntity);
     }
 
-    public void deleteFact(Long id, Long userid) {
+    public void deleteFact(Long id) {
         factRepository.deleteById(id);
     }
 

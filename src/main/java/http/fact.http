@@ -1,0 +1,17 @@
+PUT http://localhost:8080/api/v1/fact/5
+Content-Type: application/json
+
+{
+  "facts": ["Nuevo hecho 1"],
+  "success": true,
+  "AnimalId": 1
+}
+###
+
+POST http://localhost:8080/api/v1/pet/2/fact
+
+###
+GET http://localhost:8080/api/v1/pet/1/fact?page=0&size=3
+
+###
+DELETE  http://localhost:8080/api/v1/fact/5

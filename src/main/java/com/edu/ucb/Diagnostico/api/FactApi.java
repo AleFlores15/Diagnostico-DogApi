@@ -4,16 +4,12 @@ import com.edu.ucb.Diagnostico.bl.FactBl;
 import com.edu.ucb.Diagnostico.dao.FactRepository;
 import com.edu.ucb.Diagnostico.dto.FactDto;
 import com.edu.ucb.Diagnostico.dto.ResponseDto;
-import com.edu.ucb.Diagnostico.entity.FactEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.web.bind.annotation.*;
-
 import org.springframework.data.domain.Pageable;
 
-import java.util.ArrayList;
-import java.util.List;
 
 @CrossOrigin(origins="*")
 
@@ -63,11 +59,11 @@ public class FactApi {
     }
 
 
-    @PutMapping("/api/v1/user/{userid}/fact/{id}")
-    public ResponseDto<String> updateFact(@PathVariable Long id, @PathVariable Long userid, @RequestBody FactDto factDto) {
+    @PutMapping("/api/v1/fact/{id}")
+    public ResponseDto<String> updateFact(@PathVariable Long id, @RequestBody FactDto factDto) {
         ResponseDto<String> response = new ResponseDto<>();
         try{
-            this.factBl.updateFact(id, userid, factDto);
+            this.factBl.updateFact(id, factDto);
             response.setCode("0000");
             response.setResponse("Fact updated");
             return response;
@@ -79,11 +75,11 @@ public class FactApi {
         }
     }
 
-    @DeleteMapping("/api/v1/user/{userid}/fact/{id}")
-    public ResponseDto<String> deleteFact(@PathVariable Long id, @PathVariable Long userid) {
+    @DeleteMapping("/api/v1/fact/{id}")
+    public ResponseDto<String> deleteFact(@PathVariable Long id) {
         ResponseDto<String> response = new ResponseDto<>();
         try{
-            this.factBl.deleteFact(id, userid);
+            this.factBl.deleteFact(id);
             response.setCode("0000");
             response.setResponse("Fact deleted");
             return response;

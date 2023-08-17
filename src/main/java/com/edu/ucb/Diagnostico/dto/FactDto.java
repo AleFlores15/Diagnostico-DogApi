@@ -6,9 +6,8 @@ public class FactDto {
     private List<String> facts;
     private boolean success;
 
-    private Long AnimalId;
+    private Long petId;
 
-    // Constructores, getters y setters
 
     public List<String> getFacts() {
         return facts;
@@ -26,13 +25,13 @@ public class FactDto {
         this.success = success;
     }
 
-    //para animal id
-    public Long getAnimalId() {
-        return AnimalId;
+    //para pet id
+    public Long getpetId() {
+        return petId;
     }
 
-    public void setPetId(Long AnimalId) {
-        this.AnimalId = AnimalId;
+    public void setPetId(Long petId) {
+        this.petId = petId;
     }
     // toSting
     @Override

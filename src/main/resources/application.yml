@@ -9,4 +9,6 @@ spring:
     hibernate:
       ddl-auto: none
     show-sql: true
+api:
+  url: https://dog-api.kinduff.com/api/facts
 
