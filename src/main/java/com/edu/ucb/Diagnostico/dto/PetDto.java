@@ -3,7 +3,7 @@ package com.edu.ucb.Diagnostico.dto;
 import java.util.Date;
 
 public class PetDto {
-    private Long petId;
+    private Long id;
     private String name;
     private Date birthdate;
     private String breed;
@@ -11,12 +11,12 @@ public class PetDto {
 
     // Getters and setters
 
-    public Long getPetId() {
-        return petId;
+    public Long getid() {
+        return id;
     }
 
-    public void setPetId(Long petId) {
-        this.petId = petId;
+    public void setid(Long id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -57,7 +57,7 @@ public class PetDto {
     @Override
     public String toString() {
         return "PetEntity{" +
-                "petId=" + petId +
+                "id=" + id +
                 ", name='" + name + '\'' +
                 ", birthdate='" + birthdate + '\'' +
                 ", breed='" + breed + '\'' +

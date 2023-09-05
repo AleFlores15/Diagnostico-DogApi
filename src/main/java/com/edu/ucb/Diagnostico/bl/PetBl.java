@@ -31,7 +31,7 @@ public class PetBl {
         List<PetEntity> petEntityList = petRepository.findAll();
         return petEntityList.stream().map(petEntity -> {
             PetDto petDto = new PetDto();
-            petDto.setPetId(petEntity.getPetId());
+            petDto.setid(petEntity.getPetId());
             petDto.setName(petEntity.getName());
             petDto.setBirthdate(petEntity.getBirthdate());
             petDto.setBreed(petEntity.getBreed());
@@ -43,7 +43,8 @@ public class PetBl {
     public void updatePet(Long id){
         log.warn("Actualizando pet con id: " + id);
         PetEntity petEntity = petRepository.findById(id).get();
-        petEntity.setStatus(false);
+        //cambiar el estado al contrario de lo que ya tiene
+        petEntity.setStatus(!petEntity.isStatus());
         petRepository.save(petEntity);
     }
   
