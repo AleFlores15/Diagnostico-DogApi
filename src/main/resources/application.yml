@@ -1,4 +1,5 @@
 spring:
+  
   datasource:
     url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/Diagnostico}
     username: postgres
@@ -11,4 +12,5 @@ spring:
     show-sql: true
 api:
   url: https://dog-api.kinduff.com/api/facts
-
+server:
+  port: 8081
