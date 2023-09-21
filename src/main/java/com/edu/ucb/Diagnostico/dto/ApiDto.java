@@ -3,29 +3,19 @@ import java.util.Date;
 import java.util.List;
 
 
-public class FactDto {
-
-    private int id;
-    private String fact;
+public class ApiDto {
+    private List<String> facts;
     private Date start_date;
     private boolean status;
     private Long petId;
 
 
-    public int getId() {
-        return id;
+    public List<String> getFacts() {
+        return facts;
     }
 
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public String getFact() {
-        return fact;
-    }
-
-    public void setFact(String fact) {
-        this.fact = fact;
+    public void setFacts(List<String> facts) {
+        this.facts = facts;
     }
 
     public Long getpetId() {
@@ -56,8 +46,8 @@ public class FactDto {
     @Override
     public String toString() {
         return "FactDto{" +
-                "facts=" + fact +
-
+                "facts=" + facts +
+                
                 '}';
     }
 

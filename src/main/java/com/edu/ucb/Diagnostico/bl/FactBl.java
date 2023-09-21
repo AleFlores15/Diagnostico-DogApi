@@ -1,6 +1,7 @@
 package com.edu.ucb.Diagnostico.bl;
 
 import com.edu.ucb.Diagnostico.dao.FactRepository;
+import com.edu.ucb.Diagnostico.dto.ApiDto;
 import com.edu.ucb.Diagnostico.dto.FactDto;
 import com.edu.ucb.Diagnostico.entity.FactEntity;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +37,7 @@ public class FactBl {
         
         //String apiUrl = "https://dog-api.kinduff.com/api/facts";
         RestTemplate restTemplate = new RestTemplate();
-        FactDto response = restTemplate.getForObject(this.apiUrl, FactDto.class);
+        ApiDto response = restTemplate.getForObject(this.apiUrl, ApiDto.class);
        
         log.info("Guardando la siguiente fact: " + response.getFacts().get(0) + " para la mascota con id: " + petId );
 
@@ -60,9 +61,8 @@ public class FactBl {
 
     private FactDto convertToFactDto(FactEntity factEntity) {
         FactDto factDto = new FactDto();
-        List<String> facts = new ArrayList<>();
-        facts.add(factEntity.getFact());
-        factDto.setFacts(facts);
+        factDto.setId(factEntity.getFactId());
+        factDto.setFact(factEntity.getFact());
         factDto.setStart_date(factEntity.getStart_date());
         factDto.setStatus(factEntity.getStatus());
         factDto.setPetId(factEntity.getpetId());
