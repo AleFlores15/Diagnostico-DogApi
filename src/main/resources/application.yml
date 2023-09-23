@@ -1,5 +1,12 @@
 spring:
-  
+  application:
+    name: Diagnostico
+  security:
+    oauth2:
+      resource-server:
+        jwt:
+          issuer-uri: http://localhost:8080/realms/arquitectura
+          jwk-set-uri: ${spring.security.oauth2.resource-server.jwt.issuer-uri}/protocol/openid-connect/certs
   datasource:
     url: ${DATABASE_URL:jdbc:postgresql://localhost:5432/Diagnostico}
     username: postgres
@@ -14,3 +21,10 @@ api:
   url: https://dog-api.kinduff.com/api/facts
 server:
   port: 8081
+logging:
+  level:
+    org.springframework.security: DEBUG
+token:
+  converter:
+    principal-attribute: preferred_username
+    resource-id: backend

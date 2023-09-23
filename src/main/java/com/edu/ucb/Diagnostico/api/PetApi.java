@@ -16,7 +16,6 @@ import com.edu.ucb.Diagnostico.dao.PetRepository;
 import com.edu.ucb.Diagnostico.dto.PetDto;
 import com.edu.ucb.Diagnostico.dto.ResponseDto;
 
-@CrossOrigin(origins="*")
 
 @RestController
 public class PetApi {
