@@ -31,6 +31,8 @@ public class GlobalSecurityConfiguration {
                     .requestMatchers(HttpMethod.GET,"/api/v1/pet").permitAll()
                     .requestMatchers(HttpMethod.GET,"/api/v1/pet/**").hasRole("ADMIN")
                     .requestMatchers(HttpMethod.POST,"/api/v1/pet/**").hasRole("ADMIN")
+                    .requestMatchers(HttpMethod.PUT,"/api/v1/fact/**").hasRole("ADMIN")
+                    .requestMatchers(HttpMethod.PUT,"/api/v1/delete/**").hasRole("ADMIN")
                     // no olvidar los metodos
                     .requestMatchers (HttpMethod.OPTIONS, "/**").permitAll();
                     //.anyRequest().permitAll();

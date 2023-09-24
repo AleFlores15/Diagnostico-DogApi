@@ -53,6 +53,22 @@ public class FactBl {
     }
 
 
+    public void saveManualFact(Long petId, FactDto factDto) {
+        Date fechaActual = new Date();
+        log.info("Guardando la siguiente fact: " + factDto.getFact() + " para la mascota con id: " + petId );
+
+        FactEntity factEntity = new FactEntity();
+        factEntity.setFact(factDto.getFact());
+        factEntity.setStart_date(fechaActual);
+        factEntity.setStatus(true);
+        factEntity.setpetId(petId);
+        
+        factRepository.save(factEntity);
+
+        log.info("Fact guardada con exito");
+    }
+
+
     public Page<FactDto> findFacts(Long petId, Pageable pageable) {
         log.info("Buscando facts de la mascota con id: " + petId);
         Page<FactEntity> factEntityPage = factRepository.findAllbyPetId(petId, pageable);
@@ -72,16 +88,23 @@ public class FactBl {
    
 
 
-    public void updateFact(Long id) {
+    public void updateFact(Long id, FactDto factDto) {
         log.warn("Actualizando fact con id: " + id);
         FactEntity factEntity = factRepository.findById(id).get();
-        factEntity.setStatus(false);
+        factEntity.setFact(factDto.getFact());
         factRepository.save(factEntity);
     }
 
     public void deleteFact(Long id) {
         log.warn("Eliminando fact con id: " + id);
         factRepository.deleteById(id);
+    }
+
+    public void deleteByStatus(Long id) {
+        log.warn("Eliminando facts con id: " + id);
+        FactEntity factEntity = factRepository.findById(id).get();
+        factEntity.setStatus(!factEntity.getStatus());
+        factRepository.save(factEntity);
     }
 
 

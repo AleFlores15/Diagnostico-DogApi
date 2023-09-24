@@ -9,6 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 public interface FactRepository extends JpaRepository<FactEntity,Long>  {
-    @Query(value = "SELECT * FROM fact WHERE pet_id = :petId", nativeQuery = true)
+    @Query(value = "SELECT * FROM fact WHERE pet_id = :petId AND status = true", nativeQuery = true)
     Page <FactEntity> findAllbyPetId(@Param("petId")Long petId, Pageable pageable);
+
  }
