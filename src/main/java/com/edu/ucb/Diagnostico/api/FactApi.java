@@ -10,6 +10,9 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.data.domain.Pageable;
+import com.edu.ucb.Diagnostico.command.Invoker;
+import com.edu.ucb.Diagnostico.command.SaveFactCommand;
+import com.edu.ucb.Diagnostico.command.Command;
 @CrossOrigin(origins="*")
 
 @RestController
@@ -19,16 +22,23 @@ public class FactApi {
     @Autowired
     FactRepository factRepository;
 
+    @Autowired
+    private Invoker invoker;
+
+    @Autowired
+    private Command saveFactCommand;
+
 
     @PostMapping("/api/v1/pet/{petId}/fact")
     public ResponseDto<String> saveFacts(@PathVariable Long petId) {
         ResponseDto<String> response = new ResponseDto<>();
-        try{
-            this.factBl.saveFact(petId);
+        try {
+            invoker.addCommand(saveFactCommand); // Añade el comando al Invoker
+            invoker.executeCommands(petId); // Ejecuta los comandos
             response.setCode("0000");
             response.setResponse("Fact saved");
             return response;
-        }catch (Exception ex){
+        } catch (Exception ex) {
             System.out.println(ex.getMessage());
             response.setCode("9999");
             response.setErrorMessage("Internal error");
